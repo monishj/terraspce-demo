@@ -8,3 +8,5 @@ phases:
       - terraform validate
       - tflint --chdir modules/
       - tfsec modules .
+      - terraspace clean all -y
+      - TS_ENV=$ENVIRONMENT terraspace all $TERRASPACE_ACTION $STACK_NAME
