@@ -1,0 +1,10 @@
+buildspec.yamlversion: 0.2
+
+env:
+
+phases:
+  build:
+    commands:
+      - terraform validate
+      - tflint --chdir modules/
+      - tfsec modules .
