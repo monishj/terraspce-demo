@@ -1,12 +1,10 @@
 buildspec.yamlversion: 0.2
 
-env:
-
 phases:
   build:
     commands:
       - terraform validate
-      - tflint --chdir modules/
-      - tfsec modules .
+      - tflint --chdir app/modules/
+      - tfsec app/modules .
       - terraspace clean all -y
-      - TS_ENV=$ENVIRONMENT terraspace all $TERRASPACE_ACTION $STACK_NAME
+      - TS_VERSION_CHECK=0 ;TS_ENV=$ENVIRONMENT terraspace all $TERRASPACE_ACTION $STACK_NAME
