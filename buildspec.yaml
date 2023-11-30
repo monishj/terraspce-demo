@@ -1,4 +1,4 @@
-version: 0.2
+buildspec.yamlversion: 0.2
 
 phases:
   build:
@@ -6,6 +6,7 @@ phases:
       - terraform validate
       - tflint --chdir app/modules/
 #      - tfsec app/modules
+      - bundle update terraspace
       - bundle install
       - terraspace clean all -y
       - TS_VERSION_CHECK=0 ;TS_ENV=$ENVIRONMENT terraspace all $TERRASPACE_ACTION $STACK_NAME
