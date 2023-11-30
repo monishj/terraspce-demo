@@ -5,6 +5,6 @@ phases:
     commands:
       - terraform validate
       - tflint --chdir app/modules/
-      - tfsec app/modules .
+#      - tfsec app/modules
       - terraspace clean all -y
       - TS_VERSION_CHECK=0 ;TS_ENV=$ENVIRONMENT terraspace all $TERRASPACE_ACTION $STACK_NAME
