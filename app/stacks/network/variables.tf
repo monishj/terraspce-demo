@@ -80,3 +80,7 @@ variable "enable_flow_log" {
   default     = false
 
 }
+
+variable "environment" {
+  type = string
+}

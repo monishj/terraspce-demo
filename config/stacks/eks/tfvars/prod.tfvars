@@ -1,4 +1,4 @@
-cluster_name                           = "prod_adcb_cluster"
+cluster_name                           = "adcb_cluster"
 environment                            = "prod"
 cluster_security_group_name            = "prod-eks-sg"
 cloudwatch_log_group_retention_in_days = 14
@@ -20,4 +20,4 @@ username                  = "developers"
 iam_role                  = "team-eks-reader"
 admin_iam_role            = "team-eks-administrator"
 enable_irsa               = true
-owners                    = "prod-team"
+owners                    = "thoughtworks-execution-team"

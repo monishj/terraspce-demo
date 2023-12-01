@@ -35,3 +35,10 @@ variable "tags" {
 variable "vpc_id" {
   type = string
 }
+
+variable "owners" {
+  type = string
+}
+variable "environment" {
+  type = string
+}

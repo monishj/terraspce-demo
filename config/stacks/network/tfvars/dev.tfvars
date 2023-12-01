@@ -1,6 +1,5 @@
 # Required variables:
 region                               = "ap-south-1"
-owners                               = "dev-teamA"
 name                                 = "DEVTEAMVPC"
 cidr                                 = "17.16.0.0/16"
 azs                                  = ["ap-south-1a","ap-south-1b"] # list(string)
@@ -11,6 +10,7 @@ create_database_subnet_group         = false
 create_database_subnet_route_table   = false
 enable_nat_gateway                   = true
 single_nat_gateway                   = true
-
+owners              = "thoughtworks-execution-team"
+environment         = "dev"
 # Optional variables:
 # enable_flow_log                    = false
