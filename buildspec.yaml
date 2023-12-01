@@ -10,5 +10,5 @@ phases:
       - tfsec app/modules -m HIGH
       - bundle install
       - terraspace clean all -y
-      - EXPORT TS_VERSION_CHECK=0
+      - export TS_VERSION_CHECK=0
       - TS_ENV=$CODEBUILD_RESOLVED_ENVIRONMENT terraspace all $CODEBUILD_RESOLVED_TERRASPACE_ACTION $STACK_NAME
