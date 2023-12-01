@@ -11,8 +11,8 @@ phases:
       - bundle install
       - terraspace clean all -y
       - export TS_VERSION_CHECK=0
+      - echo "RUNNING terraspace $TERRASPACE_ACTION on STACK $STACK_NAME"
       - TS_ENV=$ENVIRONMENT terraspace all $TERRASPACE_ACTION $STACK_NAME
   post_build:
     commands:
       - terraspace logs
->>>>>>> bbe1739 ([IAC_Terraspace] Adding logs)
