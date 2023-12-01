@@ -20,4 +20,4 @@ username                  = "developer"
 iam_role                  = "team-eks-reader"
 admin_iam_role            = "team-eks-administrator"
 enable_irsa               = true
-owners                    = "thoughtworks-execution-team"
+owners                    = "execution-team"
