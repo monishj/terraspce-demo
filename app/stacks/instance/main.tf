@@ -6,7 +6,7 @@ locals {
 module "ec2_instance" {
   source = "../../modules/ec2"
 
-  name                  ="${var.name}-${random_pet.suffix}"
+  name                  ="${var.name}-${random_pet.suffix.id}"
   ami                   = var.ami
   instance_type         = var.instance_type
   monitoring            = true

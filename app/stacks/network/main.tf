@@ -1,7 +1,7 @@
 module "vpc" {
   source      = "../../modules/vpc"
   owners      = ""
-  name = "${var.name}-${random_pet.suffix}"
+  name = "${var.name}-${random_pet.suffix.id}"
   cidr = var.cidr
   create_database_subnet_group = var.create_database_subnet_group
   region = var.region
