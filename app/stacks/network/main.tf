@@ -1,6 +1,7 @@
 module "vpc" {
   source      = "../../modules/vpc"
   owners      = ""
+  name = "${var.name}-${random_pet.suffix}"
   cidr = var.cidr
   create_database_subnet_group = var.create_database_subnet_group
   region = var.region
@@ -12,4 +13,9 @@ module "vpc" {
   enable_nat_gateway = var.enable_nat_gateway
   single_nat_gateway = var.single_nat_gateway
   enable_flow_log = var.enable_flow_log
+}
+
+resource "random_pet" "suffix" {
+  length    = 2
+  separator = "-"
 }

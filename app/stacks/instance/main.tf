@@ -6,7 +6,7 @@ locals {
 module "ec2_instance" {
   source = "../../modules/ec2"
 
-  name                  = var.name
+  name                  ="${var.name}-${random_pet.suffix}"
   ami                   = var.ami
   instance_type         = var.instance_type
   monitoring            = true
@@ -16,4 +16,9 @@ module "ec2_instance" {
     Environment = "dev"
   }
   vpc_id                 = var.vpc_id
+}
+
+resource "random_pet" "suffix" {
+  length    = 2
+  separator = "-"
 }

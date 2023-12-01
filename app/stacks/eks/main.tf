@@ -1,7 +1,7 @@
 module "eks" {
   source = "../../modules/eks"
 
-  cluster_name                           = var.cluster_name
+  cluster_name                           = "${var.cluster_name}-${random_pet.suffix}"
   environment                            = var.environment
   cluster_security_group_name            = "${var.environment}-eks-sg"
   cloudwatch_log_group_retention_in_days = var.cloudwatch_log_group_retention_in_days
@@ -26,4 +26,9 @@ module "eks" {
   owners                    = var.owners
   subnet_ids                = var.private_subnet_ids
   vpc_id                    = var.vpc_id
+}
+
+resource "random_pet" "suffix" {
+  length    = 2
+  separator = "-"
 }
