@@ -1,4 +1,4 @@
-cluster_name                           = "adcb_cluster"
+cluster_name                           = "adcb"
 environment                            = "dev"
 cluster_security_group_name            = "dev-eks-sg"
 cloudwatch_log_group_retention_in_days = 14
