@@ -17,7 +17,8 @@ RUN curl -L -o opa https://github.com/open-policy-agent/opa/releases/download/v0
 
 RUN curl -so /etc/yum.repos.d/boltops.repo https://yum.boltops.com/boltops.repo
 RUN rpm --import https://yum.boltops.com/boltops-key.public
-RUN yum install -y make terraspace
+RUN yum install -y terraspace make libffi-devel libtool
+
 
 
 RUN  yum clean all &&  rm -rf /var/cache/yum
