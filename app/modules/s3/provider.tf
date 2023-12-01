@@ -4,7 +4,6 @@ provider "aws" {
     tags = {
       owner       = "thoughtworks-execution-team"
       costcenter  = "thoughtworks-adcb"
-      environment = "tw-dev"
     }
   }
 }
