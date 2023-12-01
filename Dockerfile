@@ -12,7 +12,7 @@ RUN  yum -y install dpkg unzip
 RUN curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
 RUN curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
 
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install
 RUN curl -L -o opa https://github.com/open-policy-agent/opa/releases/download/v0.58.0/opa_linux_arm64_static && chmod 755 ./opa && mv ./opa /usr/local/bin/
 
 RUN curl -so /etc/yum.repos.d/boltops.repo https://yum.boltops.com/boltops.repo
