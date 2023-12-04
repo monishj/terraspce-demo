@@ -28,6 +28,14 @@ module "eks" {
       type        = "ingress"
       self        = true
     }
+    ingress_nodes_gatekeeper_port = {
+      description                   = "Cluster API to Node group for gatekeeper webhook"
+      protocol                      = "tcp"
+      from_port                     = 8443
+      to_port                       = 8443
+      type                          = "ingress"
+      source_cluster_security_group = true
+    }
     egress_all = {
       description      = "Node all egress"
       protocol         = "-1"
@@ -71,6 +79,7 @@ module "eks" {
       desired_size   = var.eks_managed_ng_desired_size
       instance_types = var.eks_managed_ng_instance_types
       capacity_type  = var.eks_managed_ng_capacity_type
+
     }
   }
 
