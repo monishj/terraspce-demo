@@ -1,0 +1,5 @@
+source 'https://rubygems.org'
+gem 'awspec'
+gem 'json'
+gem 'webrick'
+gem 'libxml-ruby'
