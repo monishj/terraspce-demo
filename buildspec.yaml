@@ -12,7 +12,7 @@ phases:
       - terraspace clean all -y
       - export TS_VERSION_CHECK=0
       - echo "RUNNING terraspace $TERRASPACE_ACTION on STACK $STACK_NAME on environment $ENVIRONMENT"
-      - TS_ENV=$ENVIRONMENT terraspace all $TERRASPACE_ACTION $STACK_NAME -y
+      - TS_ENV=$ENVIRONMENT terraspace $DEPLOY_ALL $TERRASPACE_ACTION $STACK_NAME -y
   post_build:
     commands:
       - terraspace logs
