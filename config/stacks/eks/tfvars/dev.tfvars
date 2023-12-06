@@ -7,7 +7,7 @@ cluster_endpoint_public_access = true
 
 eks_managed_ng_ami_type       = "AL2_x86_64"
 eks_managed_ng_disk_size      = "50"
-eks_managed_ng_instance_types = ["t3.medium", "t2.medium"]
+eks_managed_ng_instance_types = ["m5.xlarge", "m5.2xlarge"]
 eks_managed_ng_min_size       = "1"
 eks_managed_ng_max_size       = "4"
 eks_managed_ng_desired_size   = "2"
