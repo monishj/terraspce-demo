@@ -11,8 +11,16 @@ phases:
       - bundle install
       - terraspace clean all -y
       - export TS_VERSION_CHECK=0
+      - |
+          if [[ $DEPLOY_ALL -eq 'yes' ]]; then
+            echo "Deploying all stack"
+            export STACK_TO_DEPLOY=all
+            exit 1
+          else
+            export STACK_TO_DEPLOY=''
+          fi
       - echo "RUNNING terraspace $TERRASPACE_ACTION on STACK $STACK_NAME on environment $ENVIRONMENT"
-      - TS_ENV=$ENVIRONMENT terraspace $DEPLOY_ALL $TERRASPACE_ACTION $STACK_NAME -y
+      - TS_ENV=$ENVIRONMENT terraspace $STACK_TO_DEPLOY $TERRASPACE_ACTION $STACK_NAME -y
   post_build:
     commands:
       - terraspace logs
