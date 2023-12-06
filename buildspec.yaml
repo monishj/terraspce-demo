@@ -15,7 +15,6 @@ phases:
           if [[ $DEPLOY_ALL -eq 'yes' ]]; then
             echo "Deploying all stack"
             export STACK_TO_DEPLOY=all
-            exit 1
           else
             export STACK_TO_DEPLOY=''
           fi
