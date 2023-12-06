@@ -190,3 +190,9 @@ variable "admin_iam_role" {
   description = "Name of the Role to be mapped as admin in K8s Authentication Config Map"
   default     = "admin-role"
 }
+
+variable "create_storage_class" {
+  type        = bool
+  description = "Determines whether to create storage class"
+  default     = false
+}

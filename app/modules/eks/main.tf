@@ -18,6 +18,13 @@ module "eks" {
     }
   }
 
+  cluster_addons = {
+    aws-ebs-csi-driver = {
+      most_recent = true
+      service_account_role_arn = module.ebs_csi_irsa_role.iam_role_arn
+    }
+  }
+
   # Extend node-to-node security group rules
   node_security_group_additional_rules = {
     ingress_self_all = {
@@ -159,5 +166,39 @@ data "aws_iam_policy_document" "kms" {
       identifiers = ["logs.amazonaws.com"]
     }
   }
+}
+
+
+module "ebs_csi_irsa_role" {
+  source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+
+  role_name             = "ebs-csi"
+  attach_ebs_csi_policy = true
+
+
+  oidc_providers = {
+    ex = {
+      provider_arn               = module.eks.oidc_provider_arn
+      namespace_service_accounts = ["kube-system:ebs-csi-controller-sa"]
+    }
+  }
+
+  tags = {
+    Terraform   = "true"
+  }
+}
+
+
+# Create a Storage Class  in K8s ##
+
+
+resource "kubernetes_storage_class" "dev_cluster_storage_class" {
+  count = var.create_storage_class ? 1 : 0
+  storage_provisioner = "ebs.csi.aws.com"
+  metadata {
+    name = "ebs-sc"
+  }
+  volume_binding_mode = "WaitForFirstConsumer"
+  depends_on = [module.eks]
 }
 

@@ -200,3 +200,9 @@ variable "subnet_ids" {
 variable "vpc_id" {
   type        = string
 }
+
+variable "create_storage_class" {
+  type        = bool
+  description = "Determines whether to create storage class"
+  default     = false
+}

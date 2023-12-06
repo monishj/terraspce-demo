@@ -21,3 +21,4 @@ iam_role                  = "team-eks-reader"
 admin_iam_role            = "team-eks-administrator"
 enable_irsa               = true
 owners                    = "execution-team"
+create_storage_class      = true
