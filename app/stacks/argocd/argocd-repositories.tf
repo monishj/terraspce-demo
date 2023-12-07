@@ -1,3 +1,7 @@
+locals {
+  code_commit_secret = <%= aws_secret("argocd-codecommit-connect") %>
+}
+
 resource "kubernetes_secret" "argocd-repo-secret" {
   metadata {
     name = "codecommit-argocd-repo-secret"
@@ -7,9 +11,10 @@ resource "kubernetes_secret" "argocd-repo-secret" {
     }
   }
   data = {
-    username = jsondecode(data.aws_secretsmanager_secret_version.by-version-stage.secret_string)["username"]
-    password = jsondecode(data.aws_secretsmanager_secret_version.by-version-stage.secret_string)["password"]
+    username = local.code_commit_secret["username"]
+    password = local.code_commit_secret["password"]
     url = "https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/project-demo-repo"
   }
   depends_on = [module.argocd]
 }
+
