@@ -14,6 +14,7 @@ resource "kubernetes_secret" "argocd-helm-repo-secret" {
     username = local.helm_repo_secret["username"]
     password = local.helm_repo_secret["password"]
     type = "helm"
+    name = "projectdemo-helm-chart"
     url = "786688261431.dkr.ecr.ap-south-1.amazonaws.com/projectdemo-helm-chart"
   }
   depends_on = [module.argocd]
