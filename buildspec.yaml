@@ -12,7 +12,7 @@ phases:
       - terraspace clean all -y
       - export TS_VERSION_CHECK=0
       - |
-          if [[ $DEPLOY_ALL -eq 'yes' ]]; then
+          if [[ ${DEPLOY_ALL} == 'yes' ]]; then
             echo "Deploying all stack"
             export STACK_TO_DEPLOY=all
           else
