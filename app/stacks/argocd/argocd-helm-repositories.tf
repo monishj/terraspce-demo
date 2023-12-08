@@ -17,6 +17,7 @@ resource "kubernetes_secret" "argocd-helm-repo-secret" {
     name = "projectdemo-helm-chart"
     url = "786688261431.dkr.ecr.ap-south-1.amazonaws.com"
     enableOCI = "true"
+    project = "default"
   }
   depends_on = [module.argocd]
 }
