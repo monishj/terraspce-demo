@@ -4,7 +4,7 @@ resource "kubernetes_manifest" "application_argocd_adcb_argo" {
     "kind" = "Application"
     "metadata" = {
       "name" = "adcb-argo"
-      "namespace" = var.namespace
+      "namespace" = "argocd"
     }
     "spec" = {
       "destination" = {

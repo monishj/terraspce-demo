@@ -8,6 +8,3 @@ variable "cluster_endpoint" {
 variable "cluster_id" {
   description = "ID or name of the EKS cluster"
 }
-variable "namespace" {
-  type = string
-}
