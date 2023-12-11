@@ -3,10 +3,22 @@ resource "kubernetes_config_map" "fluent-bit-config" {
     name      = "fluent-bit-config"
     namespace = "logging"
   }
-
   data = {
-    "fluent-bit.conf" = <<EOF
-fluent-bit.conf: |
+    "filter-kubernetes.conf"    = <<-EOT
+    [FILTER]
+        Name                kubernetes
+        Match               kube.*
+        Kube_URL            https://kubernetes.default.svc:443
+        Kube_CA_File        /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        Kube_Token_File     /var/run/secrets/kubernetes.io/serviceaccount/token
+        Kube_Tag_Prefix     kube.var.log.containers.
+        Merge_Log           On
+        Merge_Log_Key       log_processed
+        K8S-Logging.Parser  On
+        K8S-Logging.Exclude Off
+
+    EOT
+    "fluent-bit.conf"           = <<-EOT
     [SERVICE]
         Flush         1
         Log_Level     info
@@ -20,31 +32,20 @@ fluent-bit.conf: |
     @INCLUDE filter-kubernetes.conf
     @INCLUDE output-elasticsearch.conf
 
-  input-kubernetes.conf: |
+    EOT
+    "input-kubernetes.conf"     = <<-EOT
     [INPUT]
         Name              tail
         Tag               kube.*
         Path              /var/log/containers/*.log
         Parser            docker
         DB                /var/log/flb_kube.db
-        Mem_Buf_Limit     50MB
+        Mem_Buf_Limit     5MB
         Skip_Long_Lines   On
         Refresh_Interval  10
 
-  filter-kubernetes.conf: |
-    [FILTER]
-        Name                kubernetes
-        Match               kube.*
-        Kube_URL            https://kubernetes.default.svc:443
-        Kube_CA_File        /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-        Kube_Token_File     /var/run/secrets/kubernetes.io/serviceaccount/token
-        Kube_Tag_Prefix     kube.var.log.containers.
-        Merge_Log           On
-        Merge_Log_Key       log_processed
-        K8S-Logging.Parser  On
-        K8S-Logging.Exclude Off
-
-  output-elasticsearch.conf: |
+    EOT
+    "output-elasticsearch.conf" = <<-EOT
     [OUTPUT]
         Name            es
         Match           *
@@ -55,7 +56,8 @@ fluent-bit.conf: |
         AWS_Region      ${var.aws_region}
         Retry_Limit     6
 
-  parsers.conf: |
+    EOT
+    "parsers.conf"              = <<-EOT
     [PARSER]
         Name   apache
         Format regex
@@ -96,11 +98,20 @@ fluent-bit.conf: |
         Time_Keep   On
 
     [PARSER]
+        # http://rubular.com/r/tjUt3Awgg4
+        Name cri
+        Format regex
+        Regex ^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>[^ ]*) (?<message>.*)$
+        Time_Key    time
+        Time_Format %Y-%m-%dT%H:%M:%S.%L%z
+
+    [PARSER]
         Name        syslog
         Format      regex
         Regex       ^\<(?<pri>[0-9]+)\>(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<host>[^ ]*) (?<ident>[a-zA-Z0-9_\/\.\-]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
         Time_Key    time
         Time_Format %b %d %H:%M:%S
-    EOF
+
+    EOT
   }
 }

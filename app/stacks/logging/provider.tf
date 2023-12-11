@@ -1,3 +1,8 @@
+locals {
+  helm_opensearch_credentials = <%= aws_secret("opensearch_credentials") %>
+}
+
+
 terraform {
   required_providers {
     opensearch = {
@@ -30,9 +35,8 @@ provider "kubernetes" {
 }
 
 provider "opensearch" {
-  url               = "https://search-eks-logging-3dzhvamog7ywswudt2tra4ia5a.ap-south-1.es.amazonaws.com/_dashboards/"
+  url               = "https://search-eks-logging-3dzhvamog7ywswudt2tra4ia5a.ap-south-1.es.amazonaws.com"
   username          = "es_domain_user"
-  password          = module.opensearch.es_domain_password
-  # Must be disabled for basic auth
+  password          = local.helm_repo_secret["password"]
   sign_aws_requests = false
 }

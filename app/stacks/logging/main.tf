@@ -10,7 +10,7 @@ module "opensearch" {
 module "fluent-bit" {
   source = "../../modules/fluent-bit"
 
-  config_map_name = kubernetes_config_map.fluent-bit-config.id
+  config_map_name = kubernetes_config_map.fluent-bit-config.metadata[0].name
 }
 
 module "fluent-bit-irsa_role" {
@@ -81,5 +81,5 @@ resource "kubernetes_service_account" "fluent_bit_service_account" {
 resource "opensearch_roles_mapping" "mapper"{
   role_name   = "all_access"
   description = "Mapping AWS IAM roles to ES role"
-  backend_roles = [module.fluent-bit-irsa_role.iam_role_arn]
+  backend_roles = ["es_domain_user",module.fluent-bit-irsa_role.iam_role_arn]
 }
