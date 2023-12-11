@@ -10,4 +10,12 @@ resource "helm_release" "fluentbit" {
     name  = "existingConfigMap"
     value = var.config_map_name
   }
+  set {
+    name = "serviceAccount.create"
+    value = "false"
+  }
+  set {
+    name = "serviceAccount.name"
+    value = "fluent-bit-sa"
+  }
 }
