@@ -32,7 +32,7 @@ provider "kubernetes" {
 provider "opensearch" {
   url               = "https://search-eks-logging-3dzhvamog7ywswudt2tra4ia5a.ap-south-1.es.amazonaws.com/_dashboards/"
   username          = "es_domain_user"
-  password          = "I:%5003cR}d9e"
+  password          = module.opensearch.es_domain_password
   # Must be disabled for basic auth
   sign_aws_requests = false
 }
