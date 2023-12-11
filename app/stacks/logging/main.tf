@@ -81,5 +81,6 @@ resource "kubernetes_service_account" "fluent_bit_service_account" {
 resource "opensearch_roles_mapping" "mapper"{
   role_name   = "all_access"
   description = "Mapping AWS IAM roles to ES role"
-  backend_roles = ["es_domain_user",module.fluent-bit-irsa_role.iam_role_arn]
+  users       = "es_domain_user"
+  backend_roles = [module.fluent-bit-irsa_role.iam_role_arn]
 }

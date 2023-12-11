@@ -37,6 +37,6 @@ provider "kubernetes" {
 provider "opensearch" {
   url               = "https://search-eks-logging-3dzhvamog7ywswudt2tra4ia5a.ap-south-1.es.amazonaws.com"
   username          = "es_domain_user"
-  password          = local.helm_repo_secret["password"]
+  password          = local.helm_opensearch_credentials["password"]
   sign_aws_requests = false
 }
