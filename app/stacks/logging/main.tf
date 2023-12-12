@@ -5,6 +5,7 @@ module "opensearch" {
   account_id      = var.account_id
   es_domain_name  = var.es_domain_name
   es_domain_user  = var.es_domain_user
+  master_password = local.helm_opensearch_credentials["password"]
 }
 
 module "fluent-bit" {

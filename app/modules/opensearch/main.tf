@@ -51,16 +51,16 @@ POLICY
 
     master_user_options {
       master_user_name     = var.es_domain_user
-      master_user_password = random_password.master_password.result
+      master_user_password = var.master_password
     }
   }
 }
-
-resource "random_password" "master_password" {
-  length = 10
-  special = true
-  upper = true
-  lower = true
-  numeric = true
-  # override_special = "_!@#$%&*()-+=[]{}|:;<>,.?/~"
-}
+#
+#resource "random_password" "master_password" {
+#  length = 10
+#  special = true
+#  upper = true
+#  lower = true
+#  numeric = true
+#  # override_special = "_!@#$%&*()-+=[]{}|:;<>,.?/~"
+#}

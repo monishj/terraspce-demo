@@ -17,3 +17,6 @@ variable "es_domain_user" {
   description = "The master username for the Elasticsearch domain."
   default     = "eks-logging-user"
 }
+
+variable "master_password" {
+}
