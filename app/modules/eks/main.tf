@@ -104,6 +104,11 @@ module "eks" {
       rolearn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/${var.admin_iam_role}"
       username = "admin"
       groups   = ["system:masters"]
+    },
+    {
+      rolearn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/assumeRoleTWTemp-AWSProfessionalServicesRole-h6aGRyPhKhJL"
+      username = "admin"
+      groups   = ["system:masters"]
     }
   ]
   aws_auth_users = [
