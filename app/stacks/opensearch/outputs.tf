@@ -10,7 +10,3 @@ output "elasticsearch_domain_name" {
   description = "The name of the created Elasticsearch domain."
   value       = module.opensearch.elasticsearch_domain_name
 }
-
-output "fluent-bit-role-arn" {
-  value = module.fluent-bit-irsa_role.iam_role_arn
-}

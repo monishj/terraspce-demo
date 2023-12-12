@@ -1,6 +1,6 @@
 fileignoreconfig:
 - filename: app/modules/opensearch/es.tf
   checksum: fbecadcded943165c42ff15574f14aacdbd926fa4972207a681aaec303bb6d2d
-- filename: app/stacks/logging/provider.tf
-  checksum: f8824ac01bf148d9b84bb076f2e999f7cb69b1cccf75b979993cd63a3c9af874
+- filename: app/stacks/opensearch/main.tf
+  checksum: 782761d9cc775b90bbe9a15d3595d85b7ab349a0fc645b1bf1a5c99cacacfc2c
 version: ""

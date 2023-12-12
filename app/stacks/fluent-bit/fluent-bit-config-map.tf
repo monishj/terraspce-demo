@@ -49,7 +49,7 @@ resource "kubernetes_config_map" "fluent-bit-config" {
     [OUTPUT]
         Name            es
         Match           *
-        Host            ${module.opensearch.opensearch_domain_endpoint}
+        Host            ${var.opensearch_domain_endpoint}
         Port            443
         TLS             On
         AWS_Auth        On

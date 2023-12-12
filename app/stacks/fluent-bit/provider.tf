@@ -30,8 +30,8 @@ provider "kubernetes" {
 }
 
 provider "opensearch" {
-  url               = module.opensearch.opensearch_domain_endpoint
-  username          = "es_domain_user"
+  url               = "https://${var.opensearch_domain_endpoint}"
+  username          = local.helm_opensearch_credentials["username"]
   password          = local.helm_opensearch_credentials["password"]
   sign_aws_requests = false
 }

@@ -55,12 +55,3 @@ POLICY
     }
   }
 }
-#
-#resource "random_password" "master_password" {
-#  length = 10
-#  special = true
-#  upper = true
-#  lower = true
-#  numeric = true
-#  # override_special = "_!@#$%&*()-+=[]{}|:;<>,.?/~"
-#}
