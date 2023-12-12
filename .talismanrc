@@ -3,4 +3,9 @@ fileignoreconfig:
   checksum: fbecadcded943165c42ff15574f14aacdbd926fa4972207a681aaec303bb6d2d
 - filename: app/stacks/opensearch/main.tf
   checksum: 782761d9cc775b90bbe9a15d3595d85b7ab349a0fc645b1bf1a5c99cacacfc2c
+- filename: app/stacks/monitoring/values_grafana.yaml
+  checksum: 317607c00d24267ad43216b6847dedd6f969923b42dc61a7a5167358c23c320a
+- filename: app/stacks/monitoring/values.yaml
+  checksum: 530e56affa07de5b369e96bb29819a0d5fd3c0b6d9588a89dece3a93550f1f37
 version: ""
+
