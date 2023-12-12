@@ -1,6 +1,6 @@
 Certainly! If you prefer installing Terraspace without using RubyGems on macOS, you can use Homebrew. Here's an updated version of the README:
 
-# Terraspace - Getting Started
+## Terraspace - Getting Started
 
 ## Overview
 
