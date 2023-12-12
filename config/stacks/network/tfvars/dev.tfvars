@@ -1,5 +1,5 @@
 # Required variables:
-region                             = "me-cental-1"
+region                             = "me-central-1"
 name                               = "adcb-vpc"
 cidr                               = "172.16.0.0/16"
 azs                                = ["me-central-1a", "me-central-1b"]       # list(string)
