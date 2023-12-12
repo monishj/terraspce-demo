@@ -1,13 +1,3 @@
-module "opensearch" {
-  source = "../../modules/opensearch"
-
-  aws_region      = var.aws_region
-  account_id      = var.account_id
-  es_domain_name  = var.es_domain_name
-  es_domain_user  = var.es_domain_user
-  master_password = local.helm_opensearch_credentials["password"]
-}
-
 module "fluent-bit" {
   source = "../../modules/fluent-bit"
 
@@ -15,7 +5,6 @@ module "fluent-bit" {
 }
 
 module "fluent-bit-irsa_role" {
-  depends_on = [module.opensearch]
   source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
 
   role_name              = "fluent-bit"
@@ -38,7 +27,6 @@ module "fluent-bit-irsa_role" {
 }
 
 resource "aws_iam_policy" "additional" {
-  depends_on = [module.opensearch]
   name        = "fluent-bit-policy-additional"
   description = "Additional test policy"
 
@@ -50,7 +38,7 @@ resource "aws_iam_policy" "additional" {
           "es:ESHttp*",
         ]
         Effect   = "Allow"
-        Resource = "arn:aws:es:<%= expansion(':REGION') %>:<%= expansion(':ACCOUNT') %>:domain/${module.opensearch.elasticsearch_domain_name}"
+        Resource = "arn:aws:es:<%= expansion(':REGION') %>:<%= expansion(':ACCOUNT') %>:domain/${var.elasticsearch_domain_name}"
       },
     ]
   })
@@ -60,12 +48,12 @@ resource "aws_iam_policy" "additional" {
   }
 }
 
+
 resource "kubernetes_namespace" "logging" {
   metadata {
     name = "logging"
   }
 }
-
 
 resource "kubernetes_service_account" "fluent_bit_service_account" {
   metadata {

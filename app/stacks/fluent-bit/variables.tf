@@ -1,14 +1,5 @@
 variable "aws_region" {
-  default = "me-central-1"
-}
-variable "account_id" {
-  default = "786688261431"
-}
-variable "es_domain_name" {
-  default = "eks-logging"
-}
-variable "es_domain_user" {
-  default = "es_domain_user"
+  default = "ap-south-1"
 }
 
 variable "provider_arn" {
@@ -24,4 +15,12 @@ variable "cluster_endpoint" {
 }
 variable "cluster_id" {
   description = "ID or name of the EKS cluster"
+}
+
+variable "elasticsearch_domain_name" {
+  description = "ES domain name"
+}
+
+variable "opensearch_domain_endpoint" {
+  description = "ES Domain endpoint"
 }
