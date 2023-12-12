@@ -15,7 +15,7 @@ resource "kubernetes_secret" "argocd-helm-repo-secret" {
     password = local.helm_repo_secret["password"]
     type = "helm"
     name = "projectdemo-helm-chart"
-    url = "786688261431.dkr.ecr.ap-south-1.amazonaws.com"
+    url = "786688261431.dkr.ecr.me-central-1.amazonaws.com"
     enableOCI = "true"
     project = "default"
   }

@@ -206,3 +206,7 @@ variable "create_storage_class" {
   description = "Determines whether to create storage class"
   default     = false
 }
+
+variable "region" {
+  default = "me-central-1"
+}

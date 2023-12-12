@@ -15,7 +15,7 @@ resource "kubernetes_manifest" "application_argocd_adcb_argo" {
       "sources" = [
         {
           "ref" = "values"
-          "repoURL" = "https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/project-demo-repo"
+          "repoURL" = "https://git-codecommit.me-central-1.amazonaws.com/v1/repos/project-demo-repo"
           "targetRevision" = "master"
         },
         {
@@ -26,7 +26,7 @@ resource "kubernetes_manifest" "application_argocd_adcb_argo" {
               "$values/deploy/values.yaml",
             ]
           }
-          "repoURL" = "786688261431.dkr.ecr.ap-south-1.amazonaws.com"
+          "repoURL" = "786688261431.dkr.ecr.me-central-1.amazonaws.com"
           "targetRevision" = "0.1.0"
         },
       ]

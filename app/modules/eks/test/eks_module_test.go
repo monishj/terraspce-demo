@@ -11,11 +11,11 @@ func Test_eks(t *testing.T)  {
 
 		TerraformDir: "../../vpc",
 		Vars: map[string]interface{}{
-			"region":                             "ap-south-1",
+			"region":                             "me-central-1",
 			"environment":                        "test",
 			"owners":                             "terratest-team",
 			"create_database_subnet_group":       "false",
-			"azs":                                "[\"ap-south-1a\", \"ap-south-1b\"]",
+			"azs":                                "[\"me-central-1a\", \"me-central-1b\"]",
 			"create_database_subnet_route_table": "false",
 			//   "vpc_name" : "adcb-vpc-dev",
 			//   "vpc_cidr_block" : "10.0.0.0/16",

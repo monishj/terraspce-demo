@@ -1,5 +1,5 @@
 variable "region" {
-  default = "ap-south-1"
+  default = "me-central-1"
   description = "The region in which the resource will be deployed"
 }
 variable "name" {

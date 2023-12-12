@@ -13,7 +13,7 @@ resource "kubernetes_secret" "argocd-repo-secret" {
   data = {
     username = local.code_commit_secret["username"]
     password = local.code_commit_secret["password"]
-    url = "https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/project-demo-repo"
+    url = "https://git-codecommit.me-central-1.amazonaws.com/v1/repos/project-demo-repo"
   }
   depends_on = [module.argocd]
 }

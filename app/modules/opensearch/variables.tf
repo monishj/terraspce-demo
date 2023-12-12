@@ -1,6 +1,6 @@
 variable "aws_region" {
   description = "The AWS region."
-  default     = "ap-south-1"
+  default     = "me-central-1"
 }
 
 variable "account_id" {

@@ -17,7 +17,7 @@ func TestTerraformAwsRds(t *testing.T) {
 	expectedPort := int64(3306)
 	expectedDatabaseName := "terratest"
 	// Pick a random AWS region to test in. This helps ensure your code works in all regions.
-	awsRegion := "ap-south-1"
+	awsRegion := "me-central-1"
 	engineVersion := aws.GetValidEngineVersion(t, awsRegion, "mysql", "5.7")
 	// Construct the terraform options with default retryable errors to handle the most common retryable errors in
 	// terraform testing.
@@ -25,11 +25,11 @@ func TestTerraformAwsRds(t *testing.T) {
 
 		TerraformDir: "../../vpc",
 		Vars: map[string]interface{}{
-			"region":                             "ap-south-1",
+			"region":                             "me-central-1",
 			"environment":                        "test",
 			"owners":                             "terratest-team",
 			"create_database_subnet_group":       "false",
-			"azs":                                "[\"ap-south-1a\", \"ap-south-1b\"]",
+			"azs":                                "[\"me-central-1a\", \"me-central-1b\"]",
 			"create_database_subnet_route_table": "false",
 		},
 	})

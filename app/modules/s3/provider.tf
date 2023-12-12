@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "ap-south-1"
+  region = "me-central-1"
   default_tags {
     tags = {
       owner       = "thoughtworks-execution-team"

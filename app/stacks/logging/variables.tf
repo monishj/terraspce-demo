@@ -1,5 +1,5 @@
 variable "aws_region" {
-  default = "ap-south-1"
+  default = "me-central-1"
 }
 variable "account_id" {
   default = "786688261431"

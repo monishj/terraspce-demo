@@ -21,7 +21,7 @@ pipeline {
                         container('golden-build-image') {
                         echo "Enter File Name ${params.Module_NAME}"
                         echo "Pipeline Name ${params.Pipeline}"
-                        withAWS(credentials: 'aws', region: 'ap-south-1') {
+                        withAWS(credentials: 'aws', region: 'me-central-1') {
                         sh 'terraform -chdir=environments/${ENVIRONMENT}/${Module_NAME} init --lock=false'
                         }
                         }
@@ -46,7 +46,7 @@ pipeline {
                             when { changeset "modules/${params.Module_NAME}/*" }
                             steps {
                             container('golang') {
-                            withAWS(credentials: 'aws', region: 'ap-south-1') {
+                            withAWS(credentials: 'aws', region: 'me-central-1') {
                             sh '''#!/bin/bash
                               cd modules/${Module_NAME}/test/
                               go mod download
@@ -61,7 +61,7 @@ pipeline {
             steps {
             container('golden-build-image'){
                 echo "${params.Terraform_Action}"
-                withAWS(credentials: 'aws', region: 'ap-south-1') {
+                withAWS(credentials: 'aws', region: 'me-central-1') {
                 sh 'terraform get -update'
                     script {
                         if (params.Terraform_Action == 'plan') {
