@@ -7,5 +7,9 @@ fileignoreconfig:
   checksum: 317607c00d24267ad43216b6847dedd6f969923b42dc61a7a5167358c23c320a
 - filename: app/stacks/monitoring/values.yaml
   checksum: 530e56affa07de5b369e96bb29819a0d5fd3c0b6d9588a89dece3a93550f1f37
+- filename: app/stacks/argocd/argocd-repositories.tf
+  checksum: ca637f24aecae3f7c3dc4228e4d02950909e3682b409e78e908689e88170d509
+- filename: app/stacks/argocd/argocd-helm-repositories.tf
+  checksum: 62e346a2a44d1c3f3dcc0dbd5ecd0af50ad2391c7006593f2ecd075c53262661
 version: ""
 
