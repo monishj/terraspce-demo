@@ -26,7 +26,7 @@ resource "kubernetes_manifest" "application_argocd_adcb_argo" {
               "$values/demo-project-deploy/projectdemo-helm-chart/values.yaml",
             ]
           }
-          "repoURL" = "908049645973.dkr.ecr.me-central-1.amazonaws.com"
+          "repoURL" = "https://github.com/chanchalsonitw/project-demo-app/demo-project-deploy/projectdemo-helm-chart"
           "targetRevision" = "0.1.0"
         },
       ]
