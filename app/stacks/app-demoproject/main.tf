@@ -14,14 +14,21 @@ resource "kubernetes_manifest" "application_argocd_adcb_argo" {
       "project" = "default"
       "sources" = [
         {
+          "ref" = "values"
           "repoURL" = "https://github.com/chanchalsonitw/project-demo-app.git"
           "targetRevision" = "master"
-          "path" = "demo-project-deploy/projectdemo-helm-chart"
-          "chart" = {
-            "name" = "projectdemo-helm-chart"
-            "path" = "demo-project-deploy/projectdemo-helm-chart"
+        },
+        {
+          "chart" = "projectdemo-helm-chart"
+          "helm" = {
+            "releaseName" = "projectdemo-release"
+            "valueFiles" = [
+              "$values/demo-project-deploy/projectdemo-helm-chart/values.yaml",
+            ]
           }
-        }
+          "repoURL" = "908049645973.dkr.ecr.me-central-1.amazonaws.com"
+          "targetRevision" = "0.1.0"
+        },
       ]
       "syncPolicy" = {
         "automated" = {
