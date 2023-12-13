@@ -1,10 +1,19 @@
-resource "helm_release" "argocd" {
-  name       = "argocd-demoproject"
-  repository = "https://argoproj.github.io/argo-helm"
-  chart      = "argo-cd"
+locals {
+  helm_repo_secret = <%= aws_secret("argocd-github-connect") %>
+}
+
+resource "kubernetes_secret" "argocd-github-connect-secret" {
+  metadata {
+  name = "argocd-github-connect-secret"
   namespace = "argocd"
-  create_namespace = true
-  #  values = [
-  #    file("./values.yaml")
-  #  ]
+  labels = {
+    "argocd.argoproj.io/secret-type": "repository"
+  }
+}
+data = {
+    username = local.code_commit_secret["username"]
+    password = local.code_commit_secret["github-token"]
+    url = "https://github.com/chanchalsonitw/project-demo-app.git"
+}
+  depends_on = [module.argocd]
 }
