@@ -3,7 +3,7 @@ resource "aws_elasticsearch_domain" "elasticsearch_domain" {
   elasticsearch_version = "OpenSearch_1.0"
 
   cluster_config {
-    instance_type            = "r4.large.elasticsearch"
+    instance_type            = "m6g.large.elasticsearch"
     instance_count           = 1
     dedicated_master_enabled = false
     zone_awareness_enabled   = false
