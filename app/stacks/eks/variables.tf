@@ -191,7 +191,18 @@ variable "admin_iam_role" {
   default     = "admin-role"
 }
 
-variable "create_storage_class" {
+variable "enable_nat_gateway" {}
+
+variable "private_route_table_ids" {
+  type = list(string)
+}
+
+variable "ebs_csi_driver" {
+  type        = bool
+  description = "Determines whether to create storage class"
+  default     = false
+}
+variable "amazon_cloudwatch_observability" {
   type        = bool
   description = "Determines whether to create storage class"
   default     = false

@@ -3,7 +3,7 @@
 # https://terraspace.cloud/docs/config/backend/variables/
 terraform {
   backend "s3" {
-    bucket         = "<%= expansion('terraform-state-:ACCOUNT-:REGION-:ENV-:MOD_NAME') %>"
+    bucket         = "<%= expansion('terraform-state-:ACCOUNT-:REGION-:ENV') %>"
     key            = "<%= expansion(':PROJECT/:REGION/:APP/:ROLE/:MOD_NAME/:ENV/:EXTRA/:BUILD_DIR/terraform.tfstate') %>"
     region         = "<%= expansion(':REGION') %>"
     dynamodb_table = "terraform_locks"

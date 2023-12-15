@@ -201,12 +201,16 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "create_storage_class" {
+variable "region" {
+  default = "me-central-1"
+}
+variable "ebs_csi_driver" {
   type        = bool
   description = "Determines whether to create storage class"
   default     = false
 }
-
-variable "region" {
-  default = "me-central-1"
+variable "amazon_cloudwatch_observability" {
+  type        = bool
+  description = "Determines whether to create storage class"
+  default     = false
 }

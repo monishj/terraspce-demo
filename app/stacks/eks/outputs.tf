@@ -32,3 +32,7 @@ output "eks_oidc_provider_arn" {
   description = "Map of attribute maps for all EKS managed node groups created"
   value       = module.eks.eks_oidc_provider_arn
 }
+
+output "node_security_group_id" {
+  value = module.eks.node_security_group_id
+}

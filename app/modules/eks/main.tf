@@ -1,7 +1,9 @@
 ####### Creation of EKS Cluster with Managed Node Group #########
 
 data "aws_caller_identity" "current" {}
+resource "aws_security_group" "endpoint-security-group" {
 
+}
 #tfsec:ignore:aws-ec2-no-public-egress-sgr
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
@@ -18,16 +20,6 @@ module "eks" {
     }
   }
 
-  cluster_addons = {
-    aws-ebs-csi-driver = {
-      most_recent = true
-      service_account_role_arn = module.ebs_csi_irsa_role.iam_role_arn
-    },
-    amazon-cloudwatch-observability = {
-      most_recent = true
-      cluster_name = "${var.owners}-${var.environment}-${var.cluster_name}"
-    }
-  }
 
   # Extend node-to-node security group rules
   node_security_group_additional_rules = {
@@ -202,7 +194,7 @@ module "ebs_csi_irsa_role" {
 
 
 resource "kubernetes_storage_class" "dev_cluster_storage_class" {
-  count = var.create_storage_class ? 1 : 0
+  count = var.ebs_csi_driver ? 1 : 0
   storage_provisioner = "ebs.csi.aws.com"
   metadata {
     name = "ebs-sc"
@@ -211,3 +203,17 @@ resource "kubernetes_storage_class" "dev_cluster_storage_class" {
   depends_on = [module.eks]
 }
 
+
+resource "aws_eks_addon" "aws-ebs-csi-driver" {
+  count             = var.ebs_csi_driver ? 1 : 0
+  addon_name   = "aws-ebs-csi-driver"
+  cluster_name = var.cluster_name
+  service_account_role_arn = module.ebs_csi_irsa_role.iam_role_arn
+}
+
+
+resource "aws_eks_addon" "amazon-cloudwatch-observability" {
+  count             = var.amazon_cloudwatch_observability ? 1 : 0
+  addon_name   = "amazon-cloudwatch-observability"
+  cluster_name = var.cluster_name
+}

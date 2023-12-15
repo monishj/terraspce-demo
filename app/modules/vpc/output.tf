@@ -19,3 +19,11 @@ output "public_subnets" {
 output "database_subnets" {
   value = module.vpc.database_subnets
 }
+
+output "enable_nat_gateway" {
+  value = var.enable_nat_gateway
+}
+
+output "private_route_table_ids" {
+  value = module.vpc.private_route_table_ids
+}
