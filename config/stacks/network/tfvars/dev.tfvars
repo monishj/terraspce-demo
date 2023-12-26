@@ -8,8 +8,8 @@ private_subnets                    = ["172.16.101.0/24", "172.16.102.0/24"] # li
 database_subnets                   = ["172.16.151.0/24", "172.16.152.0/24"] # list(string)
 create_database_subnet_group       = false
 create_database_subnet_route_table = false
-enable_nat_gateway                 = false
-single_nat_gateway                 = false
+enable_nat_gateway                 = true
+single_nat_gateway                 = true
 owners                             = "execution-team"
 environment                        = "dev"
 # Optional variables:
